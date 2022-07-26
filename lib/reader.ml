@@ -91,6 +91,5 @@ let read (connection : In_channel.t)
        (match read_body connection content_length with
         | Error e -> Result.error e
         | Ok body ->
-          print_endline body;
           Result.ok (command, Headers.HeadersMap.of_seq (List.to_seq headers), body)))
 ;;
