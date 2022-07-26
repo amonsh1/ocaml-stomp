@@ -1,0 +1,5 @@
+(library
+ (name stomp)
+ (public_name stomp)
+ (modules command frame headers frame connection reader)
+ (libraries str unix))
