@@ -24,7 +24,6 @@ let rec ping (connection : Connection.t) =
 ;;
 
 let () =
-  Frame.create_hearthbeath () |> Frame.to_send |> print_endline;
   let connection = Connection.connect "127.0.0.1" 61613 in
   Connection.send
     connection
