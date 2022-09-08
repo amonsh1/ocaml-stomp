@@ -18,14 +18,13 @@ let to_send (frame : t) : string =
     [ frame.command |> Command.to_string ]
     |> (fun d ->
          if Headers.HeadersMap.is_empty frame.headers
-         then "\n" :: d
+         then d
          else
            (List.map
               (fun (k, v) -> Format.sprintf "%s:%s" k v)
               (Headers.HeadersMap.bindings frame.headers)
            |> String.concat "\n")
            :: d)
-    |> List.cons "\n"
     |> (fun d -> Option.fold ~none:d ~some:(fun body -> ("\n" ^ body) :: d) frame.body)
     |> List.rev
     |> fun d -> String.concat "\n" d ^ "\x00"
